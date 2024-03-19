@@ -1,0 +1,18 @@
+{
+  "name": "Assignment3-SMS",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "serverless offline"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^8.2.2",
+    "serverless-http": "^3.1.1"
+  },
+  "devDependencies": {
+    "serverless-offline": "^13.3.3"
+  }
+}
