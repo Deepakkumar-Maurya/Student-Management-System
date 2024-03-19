@@ -1,5 +1,6 @@
 const Admin = require('../../models/admins');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 
 const adminLogin = async (req, res) => {
     const { username, password } = req.body;
@@ -11,6 +12,8 @@ const adminLogin = async (req, res) => {
         if (admin) {
             const isMatch = await bcrypt.compare(password, admin.password);
             if (isMatch) {
+                const token = jwt.sign({ username }, process.env.JWT_SECRET, { expiresIn: '1h' });
+                res.cookie('token', token, { httpOnly: true });
                 res.status(200).json(admin);
                 return res.redirect('/admin-dashboard');
             } else {
