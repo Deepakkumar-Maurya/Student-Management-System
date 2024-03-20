@@ -1,5 +1,7 @@
 const User = require('../../models/users');
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv').config();
 
 const studentLogin = async (req, res) => {
     const { enrollment, password } = req.body;
@@ -11,6 +13,10 @@ const studentLogin = async (req, res) => {
         if (user) {
             const isMatch = await bcrypt.compare(password, user.password);
             if (isMatch) {
+
+                const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
+                res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+
                 res.status(200).json(user);
                 return res.redirect('/student-dashboard');
             } else {
@@ -23,3 +29,5 @@ const studentLogin = async (req, res) => {
         res.status(500).json({ message: 'Something went wrong' });
     }
 }
+
+module.exports = studentLogin;

@@ -1,13 +1,18 @@
 const serverless = require("serverless-http");
 const express = require("express");
 const mongoose = require("mongoose");
+const path = require('path');
 const app = express();
+const dotenv = require('dotenv').config();
+const index = require('./routes/index');
+const studentApi = require('./routes/studentApi');
+const adminApi = require('./routes/adminApi');
 
 
 // mongodb connection
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
 });
 const db = mongoose.connection;
 
@@ -21,13 +26,19 @@ db.once('open', () => {
 app.set('view engine', 'ejs');
 
 // public folder
-const public = path.join(__dirname, './src/public');
-app.use(express.static(public));
+const publicdirectory = path.join(__dirname, 'public');
+app.use(express.static(publicdirectory));
 
-// routes
-app.use('/', require('./src/routes/index'));
-app.use('/student', require('./src/routes/studentApi'));
-app.use('/admin', require('./src/routes/adminApi'));
+// parse URL encoded bodies (as sent by HTML forms)
+app.use(express.urlencoded({ extended : false }));
+// parse JSON bodies (as sent by API clients)
+app.use(express.json());
 
+app.use('/', index);
+app.use('/student', studentApi);
+app.use('/admin', adminApi);
 
+// app.listen(5000, () => {
+//   console.log(`Server is running on port 3000`);
+// });
 module.exports.handler = serverless(app);

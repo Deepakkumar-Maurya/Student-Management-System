@@ -9,10 +9,21 @@ const parentSchema = mongoose.model('Parent', {
         type: String,
         required: true
     },
-    phone: {
+    fatherOccupation: {
+        type: String,
+        required: true
+    },
+    motherOccupation: {
+        type: String,
+        required: true
+    },
+    fatherPhone: {
         type: String,
         required: true,
-        unique: true
+    },
+    motherPhone: {
+        type: String,
+        required: true
     }
 });
 
