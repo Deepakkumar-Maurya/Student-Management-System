@@ -38,7 +38,7 @@ app.use('/', index);
 app.use('/student', studentApi);
 app.use('/admin', adminApi);
 
-// app.listen(5000, () => {
-//   console.log(`Server is running on port 3000`);
-// });
+app.listen(5000, () => {
+  console.log(`Server is running on port 3000`);
+});
 module.exports.handler = serverless(app);

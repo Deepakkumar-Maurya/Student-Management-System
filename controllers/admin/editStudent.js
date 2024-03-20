@@ -4,6 +4,11 @@ const editStudent = async (req, res) => {
     const oldEnrollment = req.query.enrollment;
     const {name, enrollment, email, phone, address, department, year, semester, course, fatherName, motherName } = req.body;
     try {
+        const student = await Student.findOne({ enrollment: oldEnrollment });
+        if (!student) {
+            return res.status(404).json({ message: 'Student not found' });
+        }
+
         const filter = { enrollment: oldEnrollment };
         const update = { name: name, enrollment: enrollment, email: email, phone: phone, address: address, department: department, year: year, semester: semester, course: course, fatherName: fatherName, motherName: motherName };
 

@@ -1,7 +1,7 @@
 const User = require('../../models/users');
 const bcrypt = require('bcrypt');
 
-const signup = async (req, res) => {
+const studentSignup = async (req, res) => {
     const { enrollment, password } = req.body;
     try {
         if (!enrollment ||!password) {
@@ -23,4 +23,4 @@ const signup = async (req, res) => {
     }
 }
 
-module.exports = signup;
+module.exports = studentSignup;

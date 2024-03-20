@@ -11,12 +11,12 @@ const studentSchema = new mongoose.Schema({
         unique: true
     },
     email: {
-        type: String,
+        type: email,
         required: true,
         unique: true
     },
     phone: {
-        type: String,
+        type: Number,
         required: true,
         unique: true
     },
@@ -29,15 +29,15 @@ const studentSchema = new mongoose.Schema({
         required: true
     },
     year: {
-        type: String,
+        type: Number,
         required: true
     },
     semester: {
-        type: String,
+        type: Number,
         required: true
     },
     course: {
-        type: Array,
+        type: String,
         required: true
     },
     fatherName: {
