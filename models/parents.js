@@ -24,6 +24,11 @@ const parentSchema = mongoose.model('Parent', {
     motherPhone: {
         type: String,
         required: true
+    },
+    studentEnrollment: {
+        type: mongoose.Schema.Types.Number,
+        ref: 'Student',
+        required: true
     }
 });
 

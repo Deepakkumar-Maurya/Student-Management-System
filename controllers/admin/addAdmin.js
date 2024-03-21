@@ -21,12 +21,11 @@ const addAdmin = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
         const newAdmin = await Admin.create({
             username,
-            hashedPassword
+            password : hashedPassword
         });
-        res.status(201).json(newAdmin);
-        return res.redirect('/admin-dashboard');
-    } catch {
-        res.status(500).json({ message: 'Something went wrong' });
+        return res.redirect('/admin');
+    } catch(error) {
+        return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }
 }
 

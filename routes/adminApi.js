@@ -4,6 +4,8 @@ const addStudent = require('../controllers/admin/addStudent');
 const deleteStudent = require('../controllers/admin/deleteStudent');
 const editStudent = require('../controllers/admin/editStudent');
 
+const isLoggedIn = require('../middleware/Authorization');
+
 const router = express.Router();
 
 router.post('/addAdmin', addAdmin);

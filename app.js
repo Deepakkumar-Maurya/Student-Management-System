@@ -7,6 +7,7 @@ const dotenv = require('dotenv').config();
 const index = require('./routes/index');
 const studentApi = require('./routes/studentApi');
 const adminApi = require('./routes/adminApi');
+const auth = require('./routes/auth');
 
 
 // mongodb connection
@@ -26,19 +27,21 @@ db.once('open', () => {
 app.set('view engine', 'ejs');
 
 // public folder
-const publicdirectory = path.join(__dirname, 'public');
-app.use(express.static(publicdirectory));
 
 // parse URL encoded bodies (as sent by HTML forms)
 app.use(express.urlencoded({ extended : false }));
 // parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
+const publicdirectory = path.join(__dirname, 'public');
+app.use(express.static(publicdirectory));
+
 app.use('/', index);
 app.use('/student', studentApi);
 app.use('/admin', adminApi);
+app.use('/auth', auth);
 
 app.listen(5000, () => {
-  console.log(`Server is running on port 3000`);
+  console.log(`Server is running on port 5000`);
 });
-module.exports.handler = serverless(app);
+// module.exports.handler = serverless(app);

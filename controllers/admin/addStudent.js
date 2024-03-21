@@ -1,9 +1,9 @@
 const Student = require('../../models/students');
 
 const addStudent = async (req, res) => {
-    const { name, enrollment, email, phone, address, department, year, semester, course, fatherName, motherName } = req.body;
+    const { name, enrollment, email, phone, address, department, year, semester, course } = req.body;
     try {
-        if (!enrollment ||!email ||!phone ||!address ||!department ||!year ||!semester ||!course ||!fatherName ||!motherName) {
+        if (!enrollment ||!email ||!phone ||!address ||!department ||!year ||!semester ||!course) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }
         if (phone.length!== 10) {
@@ -15,12 +15,19 @@ const addStudent = async (req, res) => {
         if (year > 4 || year < 1) {
             return res.status(400).json({ message: 'Year must be between 1 and 4' });
         }
+        if (email.indexOf('@') === -1) {
+            return res.status(400).json({ message: 'Email must contain @' });
+        }
+        if (email.indexOf('.') === -1) {
+            return res.status(400).json({ message: 'Email must contain.' });
+        }
 
         const student = await Student.findOne({ enrollment });
         if (student) {
             return res.status(409).json({ message: 'Student with that enrollment already exists' });
         }
         const newStudent = await Student.create({
+            name,
             enrollment,
             email,
             phone,
@@ -28,14 +35,11 @@ const addStudent = async (req, res) => {
             department,
             year,
             semester,
-            course,
-            fatherName,
-            motherName
+            course
         })
-        res.status(201).json(newStudent);
-        return res.redirect('/student-dashboard');
-    } catch {
-        res.status(500).json({ message: 'Something went wrong' });
+        return res.redirect('/admin');
+    } catch(error) {
+        return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }
 }
 

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduTrack/admin</title>
+    <link rel="stylesheet" href="/styles/home.css" />
+  </head>
+  <body>
+    <div class="main-container">
+      <div class="left-container">
+        <div class="logo">
+          <h1>EduTrack</h1>
+        </div>
+        <span>Admin Dashboard</span>
+        <div class="menu">
+          <ul>
+            <li><a href="/">Dashboard</a></li>
+            <li><a href="/">Students</a></li>
+            <li><a href="/">Parents</a></li>
+            <li><a href="/">Exams</a></li>
+          </ul>
+        </div>
+        <button id="addAdminBtn">Add Admin</button>
+      </div>
+      <div class="right-container"></div>
+      <!-- ------------------------------------------  -->
+      <div class="right-container">
+        <button class="signbtn" id="logoutbtn">Logout</button>
+        <div>
+          <div class="countBox">
+            <h1>Students</h1>
+            <span><% studentCount %></span>
+            <button class="signbtn btnOpenForm" id="addStudentBtn">Add Student</button>
+          </div>
+          <div class="countBox">
+            <h1>Parents</h1>
+            <span><% parentCount %></span>
+            <button class="signbtn btnOpenForm" id="addParentBtn">Add Parent</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ----------------------------------------------------------------  -->
+
+    <div class="form-popup-bg">
+      <div class="form-container">
+        <button id="btnCloseForm" class="close-button">X</button>
+        <h1>Add Student</h1>
+        <form action="">
+          <div class="form-group">
+            <label for="">Name</label>
+            <input type="text" class="form-control" name="name" />
+          </div>
+          <div class="form-group">
+            <label for="">Enrollment</label>
+            <input class="form-control" type="number" name="enrollment"/>
+          </div>
+          <div class="form-group">
+            <label for="">E-Mail</label>
+            <input class="form-control" type="text" name="email"/>
+          </div>
+          <div class="form-group">
+            <label for="">Phone Number</label>
+            <input class="form-control" type="number" name="phone"/>
+          </div>
+          <div class="form-group">
+            <label for="">Address</label>
+            <input class="form-control" type="text" name="address"/>
+          </div>
+          <div class="form-group">
+            <label for="">Department</label>
+            <input class="form-control" type="text" name="department"/>
+          </div>
+          <div class="form-group">
+            <label for="">Year</label>
+            <input class="form-control" type="text" name="year"/>
+          </div>
+          <div class="form-group">
+            <label for="">Semester</label>
+            <input class="form-control" type="text" name="semester"/>
+          </div>
+          <div class="form-group">
+            <label for="">Course</label>
+            <input class="form-control" type="text" name="course"/>
+          </div>
+          
+          <button>Submit</button>
+        </form>
+      </div>
+    </div>
+    <!-- ----------------------------------  -->
+  </body>
+
+  <!-- ---------------------------------------------  -->
+  <script>
+    function closeForm() {
+      document.querySelector(".form-popup-bg").classList.remove("is-visible");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      var btnOpenForm = document.getElementsByClassName("btnOpenForm");
+      var formPopupBg = document.querySelector(".form-popup-bg");
+
+      if (btnOpenForm && formPopupBg) {
+        btnOpenForm.addEventListener("click", function (event) {
+          event.preventDefault();
+          formPopupBg.classList.add("is-visible");
+        });
+
+        formPopupBg.addEventListener("click", function (event) {
+          if (
+            event.target === formPopupBg ||
+            event.target.id === "btnCloseForm"
+          ) {
+            event.preventDefault();
+            formPopupBg.classList.remove("is-visible");
+          }
+        });
+      }
+    });
+  </script>
+  <!-- --------------------------------------------------  -->
+</html>

@@ -1,12 +1,97 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+body {
+  color: white;
+  background: rgb(63, 62, 62);
+  height: 100vh!important;
+  background-size: cover;
+  background-position: center;
+}
+
+/* ---------------- navigation --------------------- */
+nav {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 10%;
+}
+
+.appName {
+    font-size: 25px;
+    font-weight: 500;
+    color: #fd5e53;
+    cursor: pointer;
+}
+
+#navLinks li {
+  display: inline-block;
+  list-style: none;
+  padding: 0 1rem;
+}
+#navLinks li a {
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.signbtn {
+  font-size: 25px;
+  font-weight: 500;
+  color: #fd5e53;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  background-color: #b0daf7;
+}
+
+#navLinks li a:hover {
+  color: #fd5e53;
+  transition: all 0.4s ease 0s;
+}
+/* ---------------------------------------- */
+.container {
+  /* margin-top: 5rem; */
+  display: flex;
+  justify-content: center; /* Horizontally center-align */
+}
+
+.content {
+  margin: 3rem;
+  text-align: center;
+}
+
+.middleContainer {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.feature {
+  margin: 2rem;
+  text-align: center;
+  padding: 1rem;
+  height: 10rem;
+  width: 30rem;
+}
+/* ----------------------------------------------- */
 .footer {
     /* border: 2px solid red; */
-    /* background: rgb(28, 28, 28); */
+    background: rgb(28, 28, 28);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 5%;
     margin-top: 5rem;
-    background-color: blue;
+    
   }
   .foot {
     /* border: 2px solid green; */

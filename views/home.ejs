@@ -3,18 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>EduTrack</title>
 
     <link rel="stylesheet" href="/styles/home.css" />
-
   </head>
   <body>
     <!-- -------------------- Navigation Bar --------------------------- -->
     <nav>
       <div>
-        <h1>Student Management</h1>
+        <h1 class="appName">Student Management</h1>
       </div>
-      <div>
+      <div id="navLinks">
         <ul>
           <li><a href="#about">About</a></li>
           <li><a href="#services">Services</a></li>
@@ -22,30 +21,34 @@
         </ul>
       </div>
       <div>
-        <button onclick="loginFunction">login</button>
+        <button class="signbtn" id="signupbtn">signup</button>
+        <button class="signbtn" id="loginbtn">login</button>
       </div>
     </nav>
+    
     <!-- -------------------------------------------------------------------- -->
-    <div>
-      <h2>Get your management in your hands</h2>
-      <h1>Manage your students easily with</h1>
-      <span>EduTrack</span>
-      <p>
-        Edutrack is a student management solution that offers a personalized
-        offer to each type of users
-      </p>
+    <div class="container">
+      <div class="content">
+        <h2>Get your management in your hands</h2>
+        <h1>Manage your students easily with</h1>
+        <span class="appName">EduTrack</span>
+        <p>
+          Edutrack is a student management solution that offers a personalized
+          offer to each type of users
+        </p>
+      </div>
     </div>
     <!-- ----------------------------------------------------------------------- -->
-    <div>
+    <!-- <div>
       <img src="/images/sampledash.png" alt="##" />
-    </div>
+    </div> -->
     <!-- ----------------------------------------------------------------- -->
-    <div>
+    <!-- <div>
       <img src="/images/companies.png" alt="##" />
-    </div>
+    </div> -->
     <!-- ------------------------------------------------------------------- -->
-    <div>
-      <div>
+    <div class="middleContainer">
+      <div class="feature">
         <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
         <p>
           Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
@@ -54,8 +57,15 @@
           exercitationem ex nemo, recusandae placeat.
         </p>
       </div>
-      <div>
-        <img src="/images/CMS.png" alt="##" />
+      <div class="feature"> 
+        <!-- <img src="/images/CMS.png" alt="##" /> -->
+        <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit</h1>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolores
+          temporibus corporis rerum consequuntur ipsam necessitatibus non
+          quibusdam mollitia praesentium vitae natus officiis dolorum qui harum
+          exercitationem ex nemo, recusandae placeat.
+        </p>
       </div>
     </div>
     <!-- ------------------------ footer -------------------------- -->
@@ -131,4 +141,17 @@
       <span>@ copyrights by <span>Deepakkumar-Maurya</span>. All Rights Reserved </span>
     </div>
   </body>
+
+  <script>
+    const signup = document.getElementById('signupbtn');
+    const login = document.getElementById('loginbtn');
+
+    signup.addEventListener('click', (e) => {
+        window.location.href = '/signup';
+    })
+
+    login.addEventListener('click', (e) => {
+        window.location.href = '/login';
+    })
+  </script>
 </html>

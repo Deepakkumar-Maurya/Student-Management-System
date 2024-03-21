@@ -1,9 +1,9 @@
-const User = require('../models/user');
-const Admin = require('../models/admin');
+const User = require('../models/users');
+const Admin = require('../models/admins');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
 
-const isLoggedIn = async (req, res, proceed) => {
+const isLoggedIn = async (req, res, next) => {
   // console.log("Check user authorization");
 
   const token = req.cookies.token;
@@ -33,3 +33,5 @@ const isLoggedIn = async (req, res, proceed) => {
     return res.redirect('/');
   }
 };
+
+module.exports = isLoggedIn;

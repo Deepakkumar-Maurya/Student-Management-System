@@ -5,6 +5,7 @@ const dotenv = require('dotenv').config();
 
 const studentLogin = async (req, res) => {
     const { enrollment, password } = req.body;
+    console.log(enrollment, password);
     try {
         if (!enrollment ||!password) {
             return res.status(400).json({ message: 'Please enter all fields' });
@@ -14,19 +15,18 @@ const studentLogin = async (req, res) => {
             const isMatch = await bcrypt.compare(password, user.password);
             if (isMatch) {
 
-                const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
+                const token = jwt.sign({ enrollment: enrollment }, process.env.JWT_SECRET);
                 res.cookie('token', token, { maxAge: 900000, httpOnly: true });
 
-                res.status(200).json(user);
-                return res.redirect('/student-dashboard');
+                return res.redirect('/student');
             } else {
-                res.status(401).json({ message: 'Invalid password' });
+                return res.status(401).json({ message: 'Invalid password' });
             }
         } else {
-            res.status(401).json({ message: 'No such student exists' });
+            return res.status(401).json({ message: 'No such student exists' });
         }
-    } catch {
-        res.status(500).json({ message: 'Something went wrong' });
+    } catch(error) {
+        return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }
 }
 

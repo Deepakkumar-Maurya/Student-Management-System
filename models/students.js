@@ -11,7 +11,7 @@ const studentSchema = new mongoose.Schema({
         unique: true
     },
     email: {
-        type: email,
+        type: String,
         required: true,
         unique: true
     },
@@ -40,11 +40,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    fatherName: {
-        type: String,
-        required: true
-    },
-    motherName: {
+    profilePhoto: {
         type: String,
         required: true
     }

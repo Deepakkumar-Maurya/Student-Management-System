@@ -24,16 +24,15 @@ const adminLogin = async (req, res) => {
                 const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
                 res.cookie('token', token, { maxAge: 900000, httpOnly: true });
 
-                res.status(200).json(admin);
-                return res.redirect('/admin-dashboard');
+                return res.redirect('/admin');
             } else {
-                res.status(401).json({ message: 'Invalid password' });
+                return res.status(401).json({ message: 'Invalid password' });
             }
         } else {
-            res.status(401).json({ message: 'No such admin exists' });
+            return res.status(401).json({ message: 'No such admin exists' });
         }
     } catch {
-        res.status(500).json({ message: 'Something went wrong' });
+        return res.status(500).json({ message: 'Something went wrong' });
     }
 
 }

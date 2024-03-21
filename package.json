@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "serverless offline"
+    "start": "serverless offline",
+    "dev": "nodemon app.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
@@ -15,6 +16,9 @@
     "serverless-http": "^3.1.1"
   },
   "devDependencies": {
-    "serverless-offline": "^13.3.3"
+    "nodemon": "^3.1.0",
+    "serverless-apigw-binary": "^0.4.4",
+    "serverless-offline": "^13.3.3",
+    "serverless-static": "^1.0.0"
   }
 }
