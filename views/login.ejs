@@ -1,11 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduTrack/login</title>
-</head>
-<body>
-    <form action="/auth/login" method="post"></form>
-</body>
+    <link rel="stylesheet" href="/styles/login.css" />
+  </head>
+  <body>
+    <div>
+        <div>
+            <h1>Student Login</h1>
+            <form action="/auth/studentLogin" method="post">
+                <label for="enrollment">Enrollment</label>
+                <input type="number" name="enrollment" id="enrollment">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+        <div>
+            <h1>Admin Login</h1>
+            <form action="/auth/adminLogin" method="post">
+                <label for="username">username</label>
+                <input type="text" name="username" id="username">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+  </body>
+    
 </html>

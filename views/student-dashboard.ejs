@@ -6,6 +6,11 @@
     <title>EduTrack/student</title>
 </head>
 <body>
-    
+    <form action="/student/profileUpload" method="POST" enctype="multipart/form-data" >
+        <label for="enrollment">Enrollment</label>
+        <input type="number" name="enrollment">
+        <input  type="file" class="file-input" id="inpFile" name="inpFile" >
+        <button type="submit" class="custom-button">Upload</button>
+      </form>
 </body>
 </html>

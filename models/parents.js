@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 
 const parentSchema = mongoose.model('Parent', {
-    Fathername: {
+    fatherName: {
         type: String,
         required: true,
     },
-    Mothername: {
+    motherName: {
         type: String,
         required: true
     },

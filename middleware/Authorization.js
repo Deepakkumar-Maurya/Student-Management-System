@@ -7,6 +7,7 @@ const isLoggedIn = async (req, res, next) => {
   // console.log("Check user authorization");
 
   const token = req.cookies.token;
+  // const token = req.session.token;
   console.log(token);
     
   // If there is no token, then redirect to login page.

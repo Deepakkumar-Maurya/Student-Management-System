@@ -6,6 +6,12 @@
     <title>EduTrack/signup</title>
 </head>
 <body>
-    
+    <form action="/auth/studentSignup" method="post">
+        <label for="enrollment">Enrollment</label>
+        <input type="number" name="enrollment" id="enrollment">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password">
+        <button type="submit">SignUp</button>
+    </form>
 </body>
 </html>

@@ -40,10 +40,10 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    profilePhoto: {
-        type: String,
-        required: true
-    }
+    // profilePhoto: {
+    //     type: String,
+    //     required: true
+    // }
 
 });
 

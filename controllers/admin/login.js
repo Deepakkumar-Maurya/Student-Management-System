@@ -22,7 +22,7 @@ const adminLogin = async (req, res) => {
             if (isMatch) {
 
                 const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
-                res.cookie('token', token, { maxAge: 900000, httpOnly: true });
+                res.cookie('token', token , { maxAge: 900000, httpOnly: true });
 
                 return res.redirect('/admin');
             } else {
@@ -31,8 +31,8 @@ const adminLogin = async (req, res) => {
         } else {
             return res.status(401).json({ message: 'No such admin exists' });
         }
-    } catch {
-        return res.status(500).json({ message: 'Something went wrong' });
+    } catch (error) {
+        return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }
 
 }

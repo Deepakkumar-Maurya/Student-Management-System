@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EduTrack/admin</title>
-    <link rel="stylesheet" href="/styles/home.css" />
+    <link rel="stylesheet" href="/styles/adminDashboard.css" />
   </head>
   <body>
     <div class="main-container">
@@ -30,22 +30,26 @@
         <div>
           <div class="countBox">
             <h1>Students</h1>
-            <span><% studentCount %></span>
-            <button class="signbtn btnOpenForm" id="addStudentBtn">Add Student</button>
+            <span>studentCount</span>
+            <button class="signbtn btnStudentOpenForm" id="addStudentBtn">
+              Add Student
+            </button>
           </div>
           <div class="countBox">
             <h1>Parents</h1>
-            <span><% parentCount %></span>
-            <button class="signbtn btnOpenForm" id="addParentBtn">Add Parent</button>
+            <span>parentCount</span>
+            <button class="signbtn btnParentOpenForm" id="addParentBtn">
+              Add Parent
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- ----------------------------------------------------------------  -->
+    <!-- ------------------------ Add Students --------------------------  -->
 
     <div class="form-popup-bg">
       <div class="form-container">
-        <button id="btnCloseForm" class="close-button">X</button>
+        <button class="btnCloseForm close-button">X</button>
         <h1>Add Student</h1>
         <form action="">
           <div class="form-group">
@@ -54,70 +58,137 @@
           </div>
           <div class="form-group">
             <label for="">Enrollment</label>
-            <input class="form-control" type="number" name="enrollment"/>
+            <input class="form-control" type="number" name="enrollment" />
           </div>
           <div class="form-group">
             <label for="">E-Mail</label>
-            <input class="form-control" type="text" name="email"/>
+            <input class="form-control" type="text" name="email" />
           </div>
           <div class="form-group">
             <label for="">Phone Number</label>
-            <input class="form-control" type="number" name="phone"/>
+            <input class="form-control" type="number" name="phone" />
           </div>
           <div class="form-group">
             <label for="">Address</label>
-            <input class="form-control" type="text" name="address"/>
+            <input class="form-control" type="text" name="address" />
           </div>
           <div class="form-group">
             <label for="">Department</label>
-            <input class="form-control" type="text" name="department"/>
+            <input class="form-control" type="text" name="department" />
           </div>
           <div class="form-group">
             <label for="">Year</label>
-            <input class="form-control" type="text" name="year"/>
+            <input class="form-control" type="number" name="year" />
           </div>
           <div class="form-group">
             <label for="">Semester</label>
-            <input class="form-control" type="text" name="semester"/>
+            <input class="form-control" type="number" name="semester" />
           </div>
           <div class="form-group">
             <label for="">Course</label>
-            <input class="form-control" type="text" name="course"/>
+            <input class="form-control" type="text" name="course" />
           </div>
-          
+          <!-- <div class="form-group">
+            <label for="">profile photo</label>
+            <input class="form-control" type="file" name="profile" />
+          </div> -->
+
           <button>Submit</button>
         </form>
       </div>
     </div>
-    <!-- ----------------------------------  -->
+    <!-- --------------------- Add Parents --------------------------------  -->
+    <div class="parentForm-popup-bg">
+      <div class="form-container">
+        <button class="btnCloseForm close-button">X</button>
+        <h1>Add Parent</h1>
+        <form action="">
+          <div class="form-group">
+            <label for="">Father Name</label>
+            <input type="text" class="form-control" name="fatherName" />
+          </div>
+          <div class="form-group">
+            <label for="">Mother Name</label>
+            <input class="form-control" type="text" name="motherName" />
+          </div>
+          <div class="form-group">
+            <label for="">Father Occupation</label>
+            <input class="form-control" type="text" name="fatherOccupation" />
+          </div>
+          <div class="form-group">
+            <label for="">Mother Occupation</label>
+            <input class="form-control" type="text" name="motherOccupation" />
+          </div>
+          <div class="form-group">
+            <label for="">Father Phone</label>
+            <input class="form-control" type="number" name="fatherPhone" />
+          </div>
+          <div class="form-group">
+            <label for="">Mother Phone</label>
+            <input class="form-control" type="number" name="motherPhone" />
+          </div>
+
+          <button>Submit</button>
+        </form>
+      </div>
+    </div>
+    <!-- --------------------------------------------------------------------  -->
   </body>
 
-  <!-- ---------------------------------------------  -->
+  <!-- ------------------- popup Student form ------------------  -->
   <script>
     function closeForm() {
       document.querySelector(".form-popup-bg").classList.remove("is-visible");
     }
 
     document.addEventListener("DOMContentLoaded", function () {
-      var btnOpenForm = document.getElementsByClassName("btnOpenForm");
-      var formPopupBg = document.querySelector(".form-popup-bg");
-
-      if (btnOpenForm && formPopupBg) {
-        btnOpenForm.addEventListener("click", function (event) {
+      /* Contact Form Interactions */
+      document
+        .querySelector(".btnStudentOpenForm")
+        .addEventListener("click", function (event) {
           event.preventDefault();
-          formPopupBg.classList.add("is-visible");
+          document.querySelector(".form-popup-bg").classList.add("is-visible");
         });
 
-        formPopupBg.addEventListener("click", function (event) {
+      //close popup when clicking x or off popup
+      document
+        .querySelector(".form-popup-bg")
+        .addEventListener("click", function (event) {
           if (
-            event.target === formPopupBg ||
-            event.target.id === "btnCloseForm"
+            event.target.matches(".form-popup-bg") ||
+            event.target.matches(".btnCloseForm")
           ) {
             event.preventDefault();
-            formPopupBg.classList.remove("is-visible");
+            this.classList.remove("is-visible");
           }
         });
-      }
+    });
+    // ------------------------- popup Parent ----------------- 
+    function closeForm() {
+      document.querySelector(".parentForm-popup-bg").classList.remove("is-visible");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      /* Contact Form Interactions */
+      document
+        .querySelector(".btnParentOpenForm")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          document.querySelector(".parentForm-popup-bg").classList.add("is-visible");
+        });
+
+      //close popup when clicking x or off popup
+      document
+        .querySelector(".parentForm-popup-bg")
+        .addEventListener("click", function (event) {
+          if (
+            event.target.matches(".parentForm-popup-bg") ||
+            event.target.matches(".btnCloseForm")
+          ) {
+            event.preventDefault();
+            this.classList.remove("is-visible");
+          }
+        });
     });
   </script>
   <!-- --------------------------------------------------  -->
