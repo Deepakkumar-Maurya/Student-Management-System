@@ -15,18 +15,6 @@ functions:
 
 plugins:
   - serverless-offline
-  # - serverless-apigw-binary
-  - serverless-static 
-
-# custom:
-#   apigwBinary:
-#     types:
-#       - '*/*' # Allow all binary types (images, CSS, etc.)
-custom:
-  static:
-    path: ./public # select the folder you want to serve
-    port: 3000 # select a specific port 
 
 
-# package:
-#   individually: true # Package each function individually to avoid size limits
+

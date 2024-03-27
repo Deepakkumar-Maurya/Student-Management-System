@@ -7,6 +7,7 @@ const StudentProfilePhoto = require('../../models/studentProfilePhoto');
 
 const router = express.Router();
 
+// multer storage
 const storage = multer.diskStorage({
     destination: function (req, res, cb) {
         console.log('11111');
@@ -32,7 +33,7 @@ function base64_encode(file) {
 const upload = multer({ storage });
 
 
-
+// route to upload image
 router.post("/", upload.single('inpFile'), async (req, res, next) => {
     const imgStr = base64_encode(req.file.path);
     console.log(imgStr);

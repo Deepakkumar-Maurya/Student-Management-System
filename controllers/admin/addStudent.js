@@ -1,11 +1,14 @@
 const Student = require('../../models/students');
 
+// controller for adding student
 const addStudent = async (req, res) => {
     const { name, enrollment, email, phone, address, department, year, semester, course } = req.body;
     try {
+        // check if all fields are filled
         if (!enrollment ||!email ||!phone ||!address ||!department ||!year ||!semester ||!course) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }
+        // common validations
         if (phone.length!== 10) {
             return res.status(400).json({ message: 'Phone number must be 10 digits' });
         }
@@ -26,6 +29,8 @@ const addStudent = async (req, res) => {
         if (student) {
             return res.status(409).json({ message: 'Student with that enrollment already exists' });
         }
+
+        // creating new student
         const newStudent = await Student.create({
             name,
             enrollment,

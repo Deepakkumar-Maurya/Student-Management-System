@@ -35,19 +35,19 @@ app.use(express.urlencoded({ extended : false }));
 // parse JSON bodies (as sent by API clients)
 app.use(express.json());
 
-
+// cookie parser
 app.use(cookieParser());
 
 const publicdirectory = path.join(__dirname, 'public');
 app.use(express.static(publicdirectory));
 
+
+// routes
 app.use('/', index);
 app.use('/student/profileUpload', profileUpload);
 app.use('/student', studentApi);
 app.use('/admin', adminApi);
 app.use('/auth', auth);
 
-// app.listen(5000, () => {
-//   console.log(`Server is running on port 5000`);
-// });
+// adding serverless-http
 module.exports.handler = serverless(app);

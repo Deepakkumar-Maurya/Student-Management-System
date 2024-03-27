@@ -1,9 +1,11 @@
 const Admin = require('../../models/admins');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
+// controller for adding admin
 const addAdmin = async (req, res) => {
     const { username, password } = req.body;
     try {
+        // validations
         if (!username ||!password) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }
@@ -18,7 +20,10 @@ const addAdmin = async (req, res) => {
         if (admin) {
             return res.status(409).json({ message: 'Admin already exists' });
         }
+
+        // hashing password
         const hashedPassword = await bcrypt.hash(password, 10);
+        // creating new admin
         const newAdmin = await Admin.create({
             username,
             password : hashedPassword

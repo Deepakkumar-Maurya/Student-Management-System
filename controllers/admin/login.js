@@ -1,11 +1,12 @@
 const Admin = require('../../models/admins');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
 
 const adminLogin = async (req, res) => {
     const { username, password } = req.body;
     try {
+        // validations
         if (!username ||!password) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }

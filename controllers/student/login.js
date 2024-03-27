@@ -1,5 +1,5 @@
 const User = require('../../models/users');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv').config();
 
@@ -7,9 +7,11 @@ const studentLogin = async (req, res) => {
     const { enrollment, password } = req.body;
     console.log(enrollment, password);
     try {
+        // validations
         if (!enrollment ||!password) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }
+        // user login
         const user = await User.findOne({ enrollment });
         if (user) {
             const isMatch = await bcrypt.compare(password, user.password);

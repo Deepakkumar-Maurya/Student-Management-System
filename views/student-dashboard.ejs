@@ -6,6 +6,19 @@
     <title>EduTrack/student</title>
 </head>
 <body>
+    <!-- ----------- logout -------------  -->
+    <form action="/auth/studentLogout" method="post">
+        <button type="submit">Logout</button>
+    </form>
+    <!-- ------------------------ Edit Details ------------------------ -->
+    <form action="/student/editDetails" method="post">
+
+    </form>
+    <!-- ------------ edit Parents ------------------------ -->
+    <form action="/student/editParents" method="POST">
+
+    </form>
+    <!-- ------------------------ Profile photo upload ------------------------ -->
     <form action="/student/profileUpload" method="POST" enctype="multipart/form-data" >
         <label for="enrollment">Enrollment</label>
         <input type="number" name="enrollment">

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const parentSchema = mongoose.model('Parent', {
+const parentSchema = new mongoose.Schema({
     fatherName: {
         type: String,
         required: true,

@@ -1,10 +1,12 @@
 const User = require('../../models/users');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
+// controller for student signup
 const studentSignup = async (req, res) => {
     const { enrollment, password } = req.body;
     console.log(enrollment, password); 
     try {
+        // validations
         if (!enrollment ||!password) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }

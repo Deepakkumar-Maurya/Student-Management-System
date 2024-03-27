@@ -6,8 +6,9 @@ const listStudent = async (req, res) => {
 
     try {
         const count = await Student.countDocuments();
-        const totalPages = Math.ceil(count / limit);
+        const totalPages = Math.ceil(count / limit);    // total pages
 
+        // get students and pagination
         const students = await Student.find({})
             .skip((page - 1) * limit)
             .limit(limit);
