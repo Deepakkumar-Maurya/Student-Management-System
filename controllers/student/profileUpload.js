@@ -7,35 +7,16 @@ const StudentProfilePhoto = require('../../models/studentProfilePhoto');
 
 const router = express.Router();
 
+
 // multer storage
-const storage = multer.diskStorage({
-    destination: function (req, res, cb) {
-        console.log('11111');
-        return cb(null, path.join(__dirname, "../../uploads"));
-    },
-    filename: function (req, file, cb) {
-        console.log('22222');
-        return cb(null, `${Date.now()}-${file.originalname}`);
-    },
-});
-
-// ----------------------------------
-
-// function to encode file data to base64 encoded string
-function base64_encode(file) {
-    // Read binary data from the file
-    const bitmap = fs.readFileSync(file);
-    // Convert binary data to base64 encoded string
-    return Buffer.from(bitmap).toString('base64');
-}
-// -------------------------------------
-
-const upload = multer({ storage });
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 
 // route to upload image
 router.post("/", upload.single('inpFile'), async (req, res, next) => {
-    const imgStr = base64_encode(req.file.path);
+    const fileBuffer = req.file.buffer;
+    const imgStr = Buffer.from(fileBuffer).toString('base64');
     console.log(imgStr);
     console.log(req.file.filename,"jjjjj");
     const file = req.file;
@@ -46,8 +27,8 @@ router.post("/", upload.single('inpFile'), async (req, res, next) => {
     });
     
     
-    fs.unlinkSync(req.file.path)
-    console.log("Delete File successfully.");
+    // fs.unlinkSync(req.file.path)
+    // console.log("Delete File successfully.");
     
     return res.status(200).json({ message: "success" });
 

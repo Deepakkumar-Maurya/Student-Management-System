@@ -13,8 +13,10 @@ const listStudent = async (req, res) => {
             .skip((page - 1) * limit)
             .limit(limit);
         const studentList = students.map(user => user.name);
+        console.log(studentList);
 
-        return res.status(200).json({ studentList, totalPages });
+        // return res.status(200).json({ studentList, totalPages });
+        return res.status(200).json({ studentList });
     } catch (error) {
         return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }

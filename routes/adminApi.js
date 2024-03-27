@@ -5,6 +5,7 @@ const deleteStudent = require('../controllers/admin/deleteStudent');
 const editStudent = require('../controllers/admin/editStudent');
 const listStudent = require('../controllers/admin/listStudent');
 const addParents = require('../controllers/admin/addParents');
+const listParents = require('../controllers/admin/listParents');
 
 const isLoggedIn = require('../middleware/Authorization');
 
@@ -16,5 +17,6 @@ router.post('/deleteStudent', isLoggedIn, deleteStudent);
 router.post('/editStudent', isLoggedIn, editStudent);
 router.get('/listStudent',isLoggedIn, listStudent);
 router.post('/addParent', isLoggedIn, addParents);
+router.get('/listParents',isLoggedIn, listParents);
 
 module.exports = router;

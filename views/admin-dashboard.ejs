@@ -126,12 +126,22 @@
             <label for="">Mother Phone</label>
             <input class="form-control" type="number" name="motherPhone" />
           </div>
+          <div class="form-group">
+            <label for="">Student Enrollment</label>
+            <input class="form-control" type="number" name="studentEnrollment" />
+          </div>
 
           <button type="submit">Submit</button>
         </form>
       </div>
     </div>
     <!-- --------------------------------------------------------------------  -->
+
+    <div>
+      <ul id="studentList">
+
+      </ul>
+    </div>
   </body>
 
   <!-- ------------------- popup Student form ------------------  -->
@@ -189,6 +199,34 @@
           }
         });
     });
+
+    // ---------------------------------------------------------------- 
+    // --------------------- Student List ------------------------------
+    document.addEventListener("DOMContentLoaded", () => {
+      const studentList = document.getElementById("studentList");
+      
+      let students = [];
+      function getStudents() {
+        fetch("/admin/listStudent")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data,"ftf");
+          updateUI(data.studentList)
+        })
+        .catch((err) => console.log(err.message));
+      };
+
+      function updateUI(students) {
+        console.log(students)
+        students.forEach(student => {
+          let li = document.createElement("li");
+          li.textContent = `${student}`
+          studentList.appendChild(li);
+        });
+      }
+
+      getStudents();
+    })
   </script>
   <!-- --------------------------------------------------  -->
 
