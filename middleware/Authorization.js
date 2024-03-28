@@ -19,15 +19,35 @@ const isLoggedIn = async (req, res, next) => {
   try {
     // Check if there is any user with this token.
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findOne({ enrollment: decoded.enrollment });
-    const admin = await Admin.findOne({ username: decoded.username });
-    if (user || admin) {
-      console.log('user authenticated');
-      next();
-    } else {
-      // Remove the Invalid token from the cookies.
-      res.clearCookie('token');
-      return res.redirect('/login');
+
+    if (decoded.role === 'student') {
+      const user = await User.findOne({ enrollment: decoded.enrollment });
+      if (user) {
+        console.log(req.originalUrl);
+        if (req.originalUrl.startsWith('/admin')) {
+          return res.status(403).json({ message: 'Forbidden' });
+        }
+        console.log('user authenticated');
+        next();
+      } else {
+        // Remove the Invalid token from the cookies.
+        res.clearCookie('token');
+        return res.redirect('/login');
+      }
+    }
+    else if (decoded.role === 'admin') {
+      const admin = await Admin.findOne({ username: decoded.username });
+      if (admin) {
+        if (req.originalUrl.startsWith('/student')) {
+          return res.status(403).json({ message: 'Forbidden' });
+        }
+        console.log('user authenticated');
+        next();
+      } else {
+        // Remove the Invalid token from the cookies.
+        res.clearCookie('token');
+        return res.redirect('/login');
+      }
     }
   } catch (error) {
     console.log('Error is :', error.message);

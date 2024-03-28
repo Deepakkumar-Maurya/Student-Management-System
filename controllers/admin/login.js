@@ -22,8 +22,9 @@ const adminLogin = async (req, res) => {
             const isMatch = await bcrypt.compare(password, admin.password);
             if (isMatch) {
 
-                const token = jwt.sign({ username: username }, process.env.JWT_SECRET);
+                const token = jwt.sign({ username: username, role: 'admin' }, process.env.JWT_SECRET);
                 res.cookie('token', token , { maxAge: 900000, httpOnly: true });
+
 
                 return res.redirect('/admin');
             } else {

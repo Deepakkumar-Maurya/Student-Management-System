@@ -17,7 +17,7 @@ const studentLogin = async (req, res) => {
             const isMatch = await bcrypt.compare(password, user.password);
             if (isMatch) {
 
-                const token = jwt.sign({ enrollment: enrollment }, process.env.JWT_SECRET);
+                const token = jwt.sign({ enrollment: enrollment, role: 'student' }, process.env.JWT_SECRET);
                 res.cookie('token', token, { maxAge: 900000, httpOnly: true });
 
                 return res.redirect('/student');

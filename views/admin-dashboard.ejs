@@ -211,7 +211,7 @@
         .then((res) => res.json())
         .then((data) => {
           console.log(data,"ftf");
-          updateUI(data.studentList)
+          updateUI(data.students)
         })
         .catch((err) => console.log(err.message));
       };
@@ -219,14 +219,57 @@
       function updateUI(students) {
         console.log(students)
         students.forEach(student => {
-          let li = document.createElement("li");
-          li.textContent = `${student}`
-          studentList.appendChild(li);
+          // let li = document.createElement("li");
+          // li.textContent = `${student}`
+          // studentList.appendChild(li);
+          let tr = document.createElement("tr");
+
+          let tdName = document.createElement("td");
+          tdName.textContent = student.name;
+
+          let tdButton = document.createElement("td");
+          let button = document.createElement("button");
+          button.textContent = "Delete"; // You can customize the button text here
+          button.onclick = function() {
+              deleteStudent(student.enrollment);
+          };
+          tdButton.appendChild(button);
+
+          tr.appendChild(tdName);
+          tr.appendChild(tdButton);
+
+          studentList.appendChild(tr);
         });
       }
 
       getStudents();
     })
+
+    // -------------------- deleteStudent ----------------------
+    function deleteStudent(enrollment) {
+      // window.location.href = `/admin/deleteStudent/?enrollment=${encodeURIComponent(enrollment)}`;
+
+      fetch('/admin/deleteStudent', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ enrollment: enrollment }),
+      })
+      .then(response => {
+          if (response.ok) {
+              // Redirect to another page or handle the response as needed
+              window.location.reload(); // Redirect to a success page, for example
+          } else {
+              throw new Error('Failed to delete student.');
+          }
+      })
+      .catch(error => {
+          console.error('Error:', error.message);
+          // Handle the error, display an error message, etc.
+      });
+
+    }
   </script>
   <!-- --------------------------------------------------  -->
 
