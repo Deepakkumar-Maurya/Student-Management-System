@@ -10,8 +10,8 @@ const editDetails = async (req, res) => {
 
         await Student.update(filter, update);
         return res.redirect('/student');
-    } catch {
-        return res.status(500).json({ message: 'Something went wrong' });
+    } catch (error) {
+        return res.status(500).json({ message: 'Something went wrong', error: error.message });
     }
 }
 
